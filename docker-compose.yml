@@ -136,4 +136,6 @@ volumes:
   africlimate:
   africlimate-backup:
   africlimate-static:
-CMS_MEDIA_VOLUME=africlimate-media
+  africlimate-media:
+  testdata:
+  backup:
