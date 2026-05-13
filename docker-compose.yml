@@ -133,3 +133,7 @@ volumes:
   pgdata:
   static:
   media:
+  africlimate:
+  africlimate-backup:
+  africlimate-static:
+CMS_MEDIA_VOLUME=africlimate-media
