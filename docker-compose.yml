@@ -40,7 +40,7 @@ x-climweb-variables: &climweb-variables
   OTEL_TRACES_SAMPLER: ${OTEL_TRACES_SAMPLER:-traceidratio}
   OTEL_TRACES_SAMPLER_ARG: ${OTEL_TRACES_SAMPLER_ARG:-1.1}
   OTEL_PER_MODULE_SAMPLER_OVERRIDES: ${OTEL_PER_MODULE_SAMPLER_OVERRIDES:-opentelemetry.instrumentation.django=always_on}
-  CLIMWEB_DEPLOYMENT_ENV: ${CLIMWEB_DEPLOYMENT_ENV:-dev}
+  CLIMWEB_DEPLOYMENT_ENV: ${CLIMWEB_DEPLOYMENT_ENV:-production}
   WAGTAIL_NEWSLETTER_MAILCHIMP_API_KEY: ${WAGTAIL_NEWSLETTER_MAILCHIMP_API_KEY:-}
   WAGTAIL_NEWSLETTER_FROM_NAME: ${WAGTAIL_NEWSLETTER_FROM_NAME:-}
   WAGTAIL_NEWSLETTER_REPLY_TO: ${WAGTAIL_NEWSLETTER_REPLY_TO:-}
@@ -67,13 +67,12 @@ services:
     restart: no
 
   climweb_dev:
-    image: climweb_dev
     container_name: climweb_dev
     restart: no
     build:
       context: .
       dockerfile: Dockerfile
-      target: dev
+      target: base  
       args:
         - UID=${UID}
         - GID=${GID}
@@ -81,6 +80,7 @@ services:
       - 8000
     environment:
       <<: *climweb-variables
+      DJANGO_SETTINGS_MODULE: climweb.config.settings.production
       WAIT_HOSTS: climweb_db_dev:5432,climweb_redis_dev:6379
     ports:
       - "80:8000"
@@ -90,12 +90,19 @@ services:
       - ${BACKUP_VOLUME}:/climweb/web/src/climweb/backup
 
   climweb_celery_worker_dev:
-    image: climweb_dev
     container_name: climweb_celery_worker_dev
     command: celery-worker
     restart: no
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+      args:
+        - UID=${UID}
+        - GID=${GID}
     environment:
       <<: *climweb-variables
+      DJANGO_SETTINGS_MODULE: climweb.config.settings.production
       WAIT_HOSTS: climweb_db_dev:5432,climweb_redis_dev:6379,climweb_dev:8000
     volumes:
       - static:/climweb/web/src/climweb/static
@@ -103,12 +110,19 @@ services:
       - ${BACKUP_VOLUME}:/climweb/web/src/climweb/backup
 
   climweb_celery_beat_dev:
-    image: climweb_dev
     container_name: climweb_celery_beat_dev
     restart: no
     command: celery-beat
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+      args:
+        - UID=${UID}
+        - GID=${GID}
     environment:
       <<: *climweb-variables
+      DJANGO_SETTINGS_MODULE: climweb.config.settings.production
       WAIT_HOSTS: climweb_db_dev:5432,climweb_redis_dev:6379,climweb_dev:8000
     volumes:
       - static:/climweb/web/src/climweb/static
