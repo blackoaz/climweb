@@ -67,7 +67,7 @@ cairocffi==1.7.1
     # via cairosvg
 cairosvg==2.9.0
     # via geomanager
-cap-composer==1.2.5
+cap-composer==1.2.9
     # via -r base.in
 capvalidator==0.1.0.dev4
     # via cap-composer
@@ -355,7 +355,7 @@ frozenlist==1.5.0
     # via
     #   aiohttp
     #   aiosignal
-geomanager==0.6.1
+geomanager==0.6.2
     # via -r base.in
 geopandas==1.0.1
     # via adm-boundary-manager
