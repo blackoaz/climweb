@@ -97,6 +97,7 @@ services:
       - ${NGINX_CONF_PATH:-./deploy/nginx/nginx.conf}:/etc/nginx/nginx.conf:ro
       - static:/wagtail_static:ro
       - media:/wagtail_media:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro 
     depends_on:
       - climweb_dev
 
