@@ -72,7 +72,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: base  
+      target: base
       args:
         - UID=${UID}
         - GID=${GID}
@@ -82,12 +82,23 @@ services:
       <<: *climweb-variables
       DJANGO_SETTINGS_MODULE: climweb.config.settings.production
       WAIT_HOSTS: climweb_db_dev:5432,climweb_redis_dev:6379
-    ports:
-      - "80:8000"
     volumes:
       - static:/climweb/web/src/climweb/static
       - media:/climweb/web/src/climweb/media
       - ${BACKUP_VOLUME}:/climweb/web/src/climweb/backup
+
+  climweb_nginx:
+    image: nginx:alpine
+    container_name: climweb_nginx
+    restart: no
+    ports:
+      - "80:80"
+    volumes:
+      - ${NGINX_CONF_PATH:-./deploy/nginx/nginx.conf}:/etc/nginx/nginx.conf:ro
+      - static:/wagtail_static:ro
+      - media:/wagtail_media:ro
+    depends_on:
+      - climweb_dev
 
   climweb_celery_worker_dev:
     container_name: climweb_celery_worker_dev
@@ -133,9 +144,7 @@ volumes:
   pgdata:
   static:
   media:
-  africlimate:
-  africlimate-backup:
-  africlimate-static:
-  africlimate-media:
-  testdata:
-  backup:
+  # africlimate:
+  # africlimate-backup:
+  # africlimate-static:
+  # africlimate-media:
