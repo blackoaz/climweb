@@ -299,7 +299,7 @@ msgstr "إظهار طبقة تحذيرات CAP"
 
 #: climweb/src/climweb/pages/home/models.py:377
 msgid "Weather Warnings"
-msgstr "تحذيرات الطقس"
+msgstr "تحذيرات"
 
 #: climweb/src/climweb/pages/home/models.py:378
 msgid "CAP Warnings Layer Display Name"
@@ -502,7 +502,7 @@ msgstr "جميع المنشورات"
 
 #: climweb/src/climweb/pages/home/templates/home/section/weather_watch_include.html:22
 msgid "Latest Weather Warnings"
-msgstr "أحدث التحذيرات الجوية"
+msgstr "أحدث التحذيرات"
 
 #: climweb/src/climweb/pages/home/templates/home/section/weather_watch_include.html:41
 msgid "For more interactive data"

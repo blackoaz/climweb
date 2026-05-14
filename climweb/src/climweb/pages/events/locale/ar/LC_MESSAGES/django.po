@@ -282,7 +282,7 @@ msgstr "رسالة تأكيد البريد الإلكتروني"
 
 #: climweb/src/climweb/pages/events/models.py:526
 msgid "Message to send to the user. For example zoom links"
-msgstr "رسالة لإرسالها إلى المستخدم. على سبيل المثال روابط التكبير"
+msgstr "رسالة لإرسالها إلى المستخدم. على سبيل المثال روابط زووم"
 
 #: climweb/src/climweb/pages/events/models.py:528
 msgid ""
@@ -294,7 +294,7 @@ msgstr ""
 
 #: climweb/src/climweb/pages/events/models.py:531
 msgid "Enable batch option for adding registrants to zoom later"
-msgstr "تمكين خيار الدفعة لإضافة المسجلين للتكبير لاحقًا"
+msgstr "تمكين خيار زووم لإضافة المسجلين زووم لاحقًا"
 
 #: climweb/src/climweb/pages/events/models.py:551
 msgid "Event Registration Page"
@@ -306,15 +306,15 @@ msgstr "إعدادات"
 
 #: climweb/src/climweb/pages/events/models.py:656
 msgid "Zoom Events Settings"
-msgstr "إعدادات تكبير الأحداث"
+msgstr "إعدادات زووم الأحداث"
 
 #: climweb/src/climweb/pages/events/models.py:657
 msgid "MailChimp Settings"
-msgstr "إعدادات ميل تشيمب"
+msgstr "إعدادات MailChimp "
 
 #: climweb/src/climweb/pages/events/models.py:670
 msgid "Added to Zoom"
-msgstr "تمت إضافته إلى التكبير"
+msgstr "تمت إضافته إلى زووم"
 
 #: climweb/src/climweb/pages/events/templates/event_header.html:131
 #, python-format
